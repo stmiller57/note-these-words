@@ -26,6 +26,7 @@ app.get("*", (req, res) => {
 const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
 // Retrieve saved notes
 app.get("/api/notes", (req, res) => {
+    console.log("here's your response", res)
     return res.json(notesFile);
 });
 
@@ -36,6 +37,7 @@ app.post("/api/notes", (req, res) => {
     notesFile.forEach((element, i) => {
         element.id = i + 1;
     });
+    console.log(notesFile, "This is notes files");
     fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
     res.json(notesFile);
 });
