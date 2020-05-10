@@ -37,7 +37,7 @@ app.post("/api/notes", (req, res) => {
     notesFile.forEach((element, i) => {
         element.id = i + 1;
     });
-    console.log(notesFile, "This is notes files");
+    console.log(notesFile, "This is the notes file");
     fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
     res.json(notesFile);
 });
