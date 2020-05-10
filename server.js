@@ -41,6 +41,9 @@ app.post("/api/notes", (req, res) => {
     fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
     res.json(notesFile);
 });
+
+// MISSING DELETE ROUTE; WAS UNABLE TO WORK ON IT BECAUSE I COULDN'T GET MY NOTES TO POST TO THE HTML
+
 // Starter server to begin listening
 app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
