@@ -5,7 +5,7 @@ const fs = require("fs");
 
 // Set up Express app
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4340;
 
 
 // Parse data with the Express app
@@ -23,15 +23,16 @@ app.get("*", (req, res) => {
 });
 
 // // API routes
-const notesFile = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
-
+const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
 // Retrieve saved notes
 app.get("/api/notes", (req, res) => {
     return res.json(notesFile);
 });
 
+// Write notes to db.json file
 app.post("/api/notes", (req, res) => {
-    notesFile.push(req.body);
+    let newNote = req.body
+    notesFile.push(newNote);
     notesFile.forEach((element, i) => {
         element.id = i + 1;
     });
