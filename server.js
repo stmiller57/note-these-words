@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // HTML routes
-
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "public/notes.html"))
 });
@@ -23,7 +22,23 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "public/index.html"))
 });
 
-// Listener
+// // API routes
+const notesFile = JSON.parse(fs.readFileSync("db/db.json", "utf8"));
+
+// Retrieve saved notes
+app.get("/api/notes", (req, res) => {
+    return res.json(notesFile);
+});
+
+app.post("/api/notes", (req, res) => {
+    notesFile.push(req.body);
+    notesFile.forEach((element, i) => {
+        element.id = i + 1;
+    });
+    fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
+    res.json(notesFile);
+});
+// Starter server to begin listening
 app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
 });
