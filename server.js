@@ -21,7 +21,6 @@ app.get("/notes", (req, res) => {
 // // API route for retrieving saved notes
 const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
 app.get("/api/notes", (req, res) => {
-    console.log("here's your response", res)
     return res.json(notesFile);
 });
 
@@ -30,14 +29,22 @@ app.post("/api/notes", (req, res) => {
     let newNote = req.body
     notesFile.push(newNote);
     notesFile.forEach((element, i) => {
-        element.id = i + 1;
+        element.id = i;
     });
     console.log(notesFile, "This is the notes file");
     fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
     res.json(notesFile);
 });
 
-// API delete route 
+// API delete route
+app.delete("/api/notes/:id", (req, res) => {
+    const idNumber = req.params.id;
+    updatedNotes = notesFile.filter((newNote) => {
+        return newNote.id != idNumber;
+    });
+    fs.writeFileSync("db/db.json", JSON.stringify(updatedNotes));
+    return res.json(updatedNotes);
+});
 
 // HTML get route for loading the index page
 app.get("*", (req, res) => {
