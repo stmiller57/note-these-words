@@ -1,5 +1,5 @@
 # Note These Words
-This is an app to write and save notes. The application uses Express in the back end to retrieve notes from a JSON file.
+This is an app to write, save and delete notes in your web browser. The application uses Express in the back end to retrieve notes from a JSON file.
 
 ## Table of Contents
 1. [Description](#description)
@@ -8,7 +8,7 @@ This is an app to write and save notes. The application uses Express in the back
 4. [License](#license)
 
 ## Description
-For people with a lot of information to remember, writing notes is an excellent way to keep track of their thoughts. This application gives users a way to take notes throughout the day in their web browser. 
+For people with a lot on their minds, writing notes is an excellent way to keep track of their thoughts. This application gives users a way to take notes throughout the day in their web browser. 
 
 The application can be started with this command:
 
@@ -16,7 +16,13 @@ The application can be started with this command:
 node server.js
 ```
 
-The user will be told what port the app is being served on and can go to localhost: in the web browser.
+Users can also start the program by running nodemon with the following command:
+
+```sh
+nodemon server.js
+```
+
+The user will be told what port the app is being served on and can go to `localhost:` in the web browser.
 
 ## Installation
 

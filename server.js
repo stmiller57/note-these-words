@@ -18,7 +18,7 @@ app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
-// // API route for retrieving saved notes
+// API route for retrieving saved notes
 const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
 app.get("/api/notes", (req, res) => {
     return res.json(notesFile);
@@ -29,7 +29,7 @@ app.post("/api/notes", (req, res) => {
     let newNote = req.body
     notesFile.push(newNote);
     notesFile.forEach((element, i) => {
-        element.id = i;
+        element.id = i + 1;
     });
     console.log(notesFile, "This is the notes file");
     fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
