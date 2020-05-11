@@ -7,6 +7,8 @@ This is an app to write, save and delete notes in your web browser. The applicat
 3. [Contributing](#contributing)
 4. [License](#license)
 
+![](assets/NoteTaker.gif)
+
 ## Description
 For people with a lot on their minds, writing notes is an excellent way to keep track of their thoughts. This application gives users a way to take notes throughout the day in their web browser. 
 
@@ -23,6 +25,10 @@ nodemon server.js
 ```
 
 The user will be told what port the app is being served on and can go to `localhost:` in the web browser.
+
+The application is also located on Heroku at this link:
+https://blooming-fjord-50965.herokuapp.com/
+
 
 ## Installation
 
