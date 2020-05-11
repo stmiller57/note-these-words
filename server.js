@@ -13,24 +13,19 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-// HTML routes
+// HTML route for notes page
 app.get("/notes", (req, res) => {
     res.sendFile(path.join(__dirname, "public/notes.html"))
 });
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "public/index.html"))
-});
-
-// // API routes
+// // API route for retrieving saved notes
 const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
-// Retrieve saved notes
 app.get("/api/notes", (req, res) => {
     console.log("here's your response", res)
     return res.json(notesFile);
 });
 
-// Write notes to db.json file
+// API route to write notes to db.json file
 app.post("/api/notes", (req, res) => {
     let newNote = req.body
     notesFile.push(newNote);
@@ -42,9 +37,13 @@ app.post("/api/notes", (req, res) => {
     res.json(notesFile);
 });
 
-// MISSING DELETE ROUTE; WAS UNABLE TO WORK ON IT BECAUSE I COULDN'T GET MY NOTES TO POST TO THE HTML
+// API delete route 
 
-// Starter server to begin listening
+// HTML get route for loading the index page
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "public/index.html"))
+});
+// Start server to begin listening
 app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
 });
