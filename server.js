@@ -19,10 +19,10 @@ app.get("/notes", (req, res) => {
 });
 
 // API route for retrieving saved notes
-const notesFile = JSON.parse(fs.readFileSync("db/db.json"));
 app.get("/api/notes", (req, res) => {
-    return res.json(notesFile);
+    return res.json(JSON.parse(fs.readFileSync("db/db.json")));
 });
+let notesFile = [];
 
 // API route to write new notes to db.json file
 app.post("/api/notes", (req, res) => {
@@ -38,12 +38,12 @@ app.post("/api/notes", (req, res) => {
 
 // API delete route
 app.delete("/api/notes/:id", (req, res) => {
-    const idNumber = req.params.id;
-    updatedNotes = notesFile.filter((newNote) => {
+    let idNumber = req.params.id;
+    notesFile = notesFile.filter((newNote) => {
         return newNote.id != idNumber;
     });
-    fs.writeFileSync("db/db.json", JSON.stringify(updatedNotes));
-    return res.json(updatedNotes);
+    fs.writeFileSync("db/db.json", JSON.stringify(notesFile));
+    return res.json(notesFile);
 });
 
 // HTML get route for loading the index page
