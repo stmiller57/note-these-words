@@ -24,7 +24,7 @@ app.get("/api/notes", (req, res) => {
     return res.json(notesFile);
 });
 
-// API route to write notes to db.json file
+// API route to write new notes to db.json file
 app.post("/api/notes", (req, res) => {
     let newNote = req.body
     notesFile.push(newNote);
